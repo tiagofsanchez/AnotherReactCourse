@@ -21,8 +21,8 @@ class App extends Component {
     this.setState({
       persons: newPersons
     })
-
   }
+
 
   /* This really shows that the array and object are reference type and you need to copy them to keep imutability*/
   nameChangeHandler = (event, id) => {
@@ -48,11 +48,14 @@ class App extends Component {
       ...this.state,
       showpersons: !this.state.showpersons,
     })
+    console.log(this.state)
   }
 
   render() {
+    
     const style = {
-      backgroundColor: "white",
+      backgroundColor: "green",
+      color: 'white',
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
@@ -75,12 +78,17 @@ class App extends Component {
           })}
         </div>
       )
+      style.backgroundColor= "red";
     }
+
+    const classes = []
+    
+
 
     return (
       <div className="App">
         <h1>Hi, I'm a React App</h1>
-        <p>This is really working!</p>
+        <p className={classes}>This is really working!</p>
         <button
           style={style}
           onClick={this.tooglePersonsHandler}>Show or Hide
