@@ -1,5 +1,4 @@
 import React from 'react';
-
 import classe from './Person.module.css';
 
 const person = ( props ) => {
