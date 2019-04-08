@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import classe from './App.module.css';
-import Person from './Person/Person';
+import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
   state = {
@@ -52,57 +53,40 @@ class App extends Component {
   }
 
   render() {
-    
-    const style = {
-      backgroundColor: "green",
-      color: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer', 
-     
-    };
-
     let persons = null;
+    let btnClass = '';
 
     if (this.state.showpersons) {
       persons = (
         <div>
-          {this.state.persons.map((item, index) => {
-            return <Person
-              click={() => this.deletePersonHandler(index)}
-              name={item.name}
-              age={item.age}
-              key={item.id}
-              changeName={(event) => this.nameChangeHandler(event, item.id)}
-            />
-          })}
+          <Persons
+            persons={this.state.persons}
+            clicked={this.deletePersonHandler}
+            changed={this.nameChangeHandler} />
         </div>
       )
-      style.backgroundColor= "red";
-     
-     }
+      btnClass = classe.red;
 
-    const classes = []; 
-    if (this.state.persons.length <= 2) { 
-      classes.push( classe.red );
     }
-    if (this.state.persons.length <=1) {
-      classes.push( classe.bold );
+
+    const classes = [];
+    if (this.state.persons.length <= 2) {
+      classes.push(classe.red);
+    }
+    if (this.state.persons.length <= 1) {
+      classes.push(classe.bold);
     }
 
     return (
-     
       <div className={classe.App}>
-        <h1>Hi, I'm a React App</h1>
-        <p className={classes.join(' ')}>This is really working!</p>
-        <button
-          style={style}
-          onClick={this.tooglePersonsHandler}>Show or Hide
-        </button>
+        <Cockpit
+          classes={classes}
+          btnClass={btnClass}
+          showing={this.tooglePersonsHandler}
+        />
         {persons}
       </div>
-     
+
     );
   }
 }
