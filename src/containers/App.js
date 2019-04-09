@@ -10,7 +10,8 @@ class App extends Component {
       { id: "321", name: 'Manu', age: 29 },
       { id: "1234", name: 'Stephanie', age: 26 }
     ],
-    otherState: 'some other value'
+    otherState: 'some other value', 
+    showingPersons: false,
   };
 
   /* In JS objects and arrays are reference type and you shouldn't be doing that */
@@ -53,9 +54,8 @@ class App extends Component {
   }
 
   render() {
+    
     let persons = null;
-    let btnClass = '';
-
     if (this.state.showpersons) {
       persons = (
         <div>
@@ -65,28 +65,17 @@ class App extends Component {
             changed={this.nameChangeHandler} />
         </div>
       )
-      btnClass = classe.red;
-
-    }
-
-    const classes = [];
-    if (this.state.persons.length <= 2) {
-      classes.push(classe.red);
-    }
-    if (this.state.persons.length <= 1) {
-      classes.push(classe.bold);
     }
 
     return (
       <div className={classe.App}>
         <Cockpit
-          classes={classes}
-          btnClass={btnClass}
-          showing={this.tooglePersonsHandler}
+          numberOfPersons={this.state.persons.length}
+          btnClassChange={this.state.showpersons}
+          showingPersons={this.tooglePersonsHandler}
         />
         {persons}
       </div>
-
     );
   }
 }
