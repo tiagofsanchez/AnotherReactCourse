@@ -1,9 +1,16 @@
-import React from 'react';
+import React , {useEffect} from 'react';
 import classe from './Cockpit.module.css';
 
 const Cockpit = (props) => {
     
     const { numberOfPersons , btnClassChange , showingPersons } = props;    
+
+    useEffect (()=> {
+        console.log('[Cockpit.js] useEffect');
+        setTimeout(()=> {
+            alert('Saved data to cloud!')
+        }, 1000)
+    }, [] )
     
     const classes = [];
     if (numberOfPersons <= 2) {

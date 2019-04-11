@@ -50,7 +50,6 @@ class App extends Component {
       ...this.state,
       showpersons: !this.state.showpersons,
     })
-    console.log(this.state)
   }
 
   render() {
